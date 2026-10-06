@@ -1,0 +1,562 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Student Task Manager</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-slate-100 min-h-screen">
+
+    <!-- HEADER -->
+    <header class="bg-slate-900 text-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-6 py-5">
+
+            <div class="flex flex-col md:flex-row
+                        justify-between items-center gap-3">
+
+                <div>
+                    <h1 class="text-2xl md:text-3xl font-bold">
+                        📚 Student Task Manager
+                    </h1>
+
+                    <p class="text-slate-400 mt-1">
+                        Manage your academic & personal tasks
+                    </p>
+                </div>
+
+                <div class="text-sm text-slate-300">
+                    Stay organized. Stay productive. 🚀
+                </div>
+
+            </div>
+
+        </div>
+    </header>
+
+
+    <!-- MAIN -->
+    <main class="max-w-6xl mx-auto px-6 py-8">
+
+        <!-- STATISTICS -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-5 mb-8">
+
+            <div class="bg-white rounded-xl p-5 shadow">
+                <p class="text-gray-500">Total Tasks</p>
+                <h2 id="total"
+                    class="text-3xl font-bold text-indigo-600 mt-2">
+                    0
+                </h2>
+            </div>
+
+            <div class="bg-white rounded-xl p-5 shadow">
+                <p class="text-gray-500">Completed</p>
+                <h2 id="completed"
+                    class="text-3xl font-bold text-green-600 mt-2">
+                    0
+                </h2>
+            </div>
+
+            <div class="bg-white rounded-xl p-5 shadow">
+                <p class="text-gray-500">Pending</p>
+                <h2 id="pending"
+                    class="text-3xl font-bold text-orange-500 mt-2">
+                    0
+                </h2>
+            </div>
+
+        </div>
+
+
+        <!-- CONTENT -->
+        <div class="grid lg:grid-cols-3 gap-8">
+
+
+            <!-- ADD TASK FORM -->
+            <div class="bg-white rounded-2xl shadow p-6 h-fit">
+
+                <h2 class="text-xl font-bold text-gray-800 mb-5">
+                    ➕ Add New Task
+                </h2>
+
+
+                <!-- TASK -->
+                <label class="block text-sm font-medium text-gray-600 mb-2">
+                    Task
+                </label>
+
+                <input
+                    id="taskInput"
+                    type="text"
+                    placeholder="Enter your task..."
+                    class="w-full border border-gray-300 rounded-lg
+                           px-4 py-3 mb-4
+                           focus:outline-none focus:ring-2
+                           focus:ring-indigo-500"
+                >
+
+
+                <!-- CATEGORY -->
+                <label class="block text-sm font-medium text-gray-600 mb-2">
+                    Category
+                </label>
+
+                <select
+                    id="categoryInput"
+                    class="w-full border border-gray-300 rounded-lg
+                           px-4 py-3 mb-4
+                           focus:outline-none focus:ring-2
+                           focus:ring-indigo-500"
+                >
+
+                    <option value="Academic">
+                        📚 Academic
+                    </option>
+
+                    <option value="Personal">
+                        👤 Personal
+                    </option>
+
+                </select>
+
+
+                <!-- PRIORITY -->
+                <label class="block text-sm font-medium text-gray-600 mb-2">
+                    Priority
+                </label>
+
+                <select
+                    id="priorityInput"
+                    class="w-full border border-gray-300 rounded-lg
+                           px-4 py-3 mb-5
+                           focus:outline-none focus:ring-2
+                           focus:ring-indigo-500"
+                >
+
+                    <option value="Low">
+                        🟢 Low
+                    </option>
+
+                    <option value="Medium">
+                        🟡 Medium
+                    </option>
+
+                    <option value="High">
+                        🔴 High
+                    </option>
+
+                </select>
+
+
+                <!-- ADD BUTTON -->
+                <button
+                    id="addBtn"
+                    class="w-full bg-indigo-600 text-white
+                           py-3 rounded-lg font-semibold
+                           hover:bg-indigo-700
+                           transition"
+                >
+                    Add Task
+                </button>
+
+            </div>
+
+
+            <!-- TASK SECTION -->
+            <div class="lg:col-span-2">
+
+                <div class="bg-white rounded-2xl shadow p-6">
+
+                    <div class="flex justify-between items-center mb-5">
+
+                        <div>
+                            <h2 class="text-xl font-bold text-gray-800">
+                                My Tasks
+                            </h2>
+
+                            <p class="text-sm text-gray-400">
+                                Your daily activities
+                            </p>
+                        </div>
+
+                    </div>
+
+
+                    <!-- TASK LIST -->
+                    <div id="taskList" class="space-y-3">
+                    </div>
+
+
+                    <!-- EMPTY -->
+                    <div
+                        id="emptyMessage"
+                        class="text-center py-12"
+                    >
+
+                        <div class="text-5xl mb-3">
+                            📋
+                        </div>
+
+                        <h3 class="font-semibold text-gray-600">
+                            No tasks yet
+                        </h3>
+
+                        <p class="text-sm text-gray-400 mt-1">
+                            Add a task to get started.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- JAVASCRIPT -->
+    <script>
+
+        // ============================
+        // GET ELEMENTS
+        // ============================
+
+        const taskInput =
+            document.getElementById("taskInput");
+
+        const categoryInput =
+            document.getElementById("categoryInput");
+
+        const priorityInput =
+            document.getElementById("priorityInput");
+
+        const addBtn =
+            document.getElementById("addBtn");
+
+        const taskList =
+            document.getElementById("taskList");
+
+        const emptyMessage =
+            document.getElementById("emptyMessage");
+
+
+        // ============================
+        // LOAD SAVED TASKS
+        // ============================
+
+        let tasks =
+            JSON.parse(localStorage.getItem("studentTasks")) || [];
+
+
+        // ============================
+        // ADD TASK
+        // ============================
+
+        function addTask() {
+
+            const text =
+                taskInput.value.trim();
+
+            const category =
+                categoryInput.value;
+
+            const priority =
+                priorityInput.value;
+
+
+            if (text === "") {
+
+                alert("Please enter a task.");
+
+                return;
+            }
+
+
+            const newTask = {
+
+                id: Date.now(),
+
+                text: text,
+
+                category: category,
+
+                priority: priority,
+
+                completed: false
+
+            };
+
+
+            tasks.push(newTask);
+
+
+            saveTasks();
+
+            displayTasks();
+
+
+            // Clear input
+            taskInput.value = "";
+
+        }
+
+
+        // ============================
+        // DISPLAY TASKS
+        // ============================
+
+        function displayTasks() {
+
+            taskList.innerHTML = "";
+
+
+            if (tasks.length === 0) {
+
+                emptyMessage.style.display = "block";
+
+            } else {
+
+                emptyMessage.style.display = "none";
+
+            }
+
+
+            tasks.forEach(function(task) {
+
+                const div =
+                    document.createElement("div");
+
+
+                div.className =
+                    "border border-gray-200 rounded-xl p-4 " +
+                    "hover:shadow-md transition";
+
+
+                // Priority color
+                let priorityClass =
+                    "bg-green-100 text-green-700";
+
+
+                if (task.priority === "Medium") {
+
+                    priorityClass =
+                        "bg-yellow-100 text-yellow-700";
+
+                }
+
+
+                if (task.priority === "High") {
+
+                    priorityClass =
+                        "bg-red-100 text-red-700";
+
+                }
+
+
+                div.innerHTML = `
+
+                    <div class="flex items-start gap-3">
+
+                        <input
+                            type="checkbox"
+                            class="w-5 h-5 mt-1"
+                            ${task.completed ? "checked" : ""}
+                        >
+
+                        <div class="flex-1">
+
+                            <h3
+                                class="font-semibold text-gray-800
+                                ${task.completed
+                                    ? "line-through text-gray-400"
+                                    : ""}"
+                            >
+                                ${task.text}
+                            </h3>
+
+                            <div class="flex flex-wrap gap-2 mt-2">
+
+                                <span
+                                    class="text-xs bg-indigo-100
+                                    text-indigo-700 px-2 py-1
+                                    rounded-full"
+                                >
+                                    ${task.category}
+                                </span>
+
+                                <span
+                                    class="text-xs ${priorityClass}
+                                    px-2 py-1 rounded-full"
+                                >
+                                    ${task.priority} Priority
+                                </span>
+
+                            </div>
+
+                        </div>
+
+                        <button
+                            class="deleteBtn text-red-500
+                            hover:text-red-700 text-lg"
+                        >
+                            🗑️
+                        </button>
+
+                    </div>
+
+                `;
+
+
+                // CHECKBOX
+                const checkbox =
+                    div.querySelector("input");
+
+
+                checkbox.addEventListener(
+                    "change",
+                    function() {
+
+                        task.completed =
+                            checkbox.checked;
+
+                        saveTasks();
+
+                        displayTasks();
+
+                    }
+                );
+
+
+                // DELETE
+                const deleteBtn =
+                    div.querySelector(".deleteBtn");
+
+
+                deleteBtn.addEventListener(
+                    "click",
+                    function() {
+
+                        tasks =
+                            tasks.filter(
+                                function(item) {
+
+                                    return item.id !== task.id;
+
+                                }
+                            );
+
+
+                        saveTasks();
+
+                        displayTasks();
+
+                    }
+                );
+
+
+                taskList.appendChild(div);
+
+            });
+
+
+            updateStats();
+
+        }
+
+
+        // ============================
+        // UPDATE STATISTICS
+        // ============================
+
+        function updateStats() {
+
+            const total =
+                tasks.length;
+
+
+            const completed =
+                tasks.filter(
+                    function(task) {
+
+                        return task.completed;
+
+                    }
+                ).length;
+
+
+            const pending =
+                total - completed;
+
+
+            document.getElementById("total")
+                .textContent = total;
+
+
+            document.getElementById("completed")
+                .textContent = completed;
+
+
+            document.getElementById("pending")
+                .textContent = pending;
+
+        }
+
+
+        // ============================
+        // SAVE TASKS
+        // ============================
+
+        function saveTasks() {
+
+            localStorage.setItem(
+                "studentTasks",
+                JSON.stringify(tasks)
+            );
+
+        }
+
+
+        // ============================
+        // BUTTON
+        // ============================
+
+        addBtn.addEventListener(
+            "click",
+            addTask
+        );
+
+
+        // ============================
+        // ENTER KEY
+        // ============================
+
+        taskInput.addEventListener(
+            "keydown",
+            function(event) {
+
+                if (event.key === "Enter") {
+
+                    addTask();
+
+                }
+
+            }
+        );
+
+
+        // ============================
+        // INITIAL DISPLAY
+        // ============================
+
+        displayTasks();
+
+    </script>
+
+</body>
+</html>
