@@ -1,0 +1,1082 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>College Assignment Tracker</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800">
+
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<nav class="bg-white shadow-sm sticky top-0 z-50">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="flex justify-between items-center h-16">
+
+            <!-- Logo -->
+
+            <div class="flex items-center gap-3">
+
+                <div class="w-10 h-10 bg-indigo-600 rounded-xl
+                            flex items-center justify-center
+                            text-white text-xl">
+                    🎓
+                </div>
+
+                <div>
+                    <h1 class="font-bold text-lg">
+                        Assignment Tracker
+                    </h1>
+
+                    <p class="text-xs text-slate-500">
+                        Student Dashboard
+                    </p>
+                </div>
+
+            </div>
+
+
+            <!-- Navigation -->
+
+            <div class="hidden md:flex gap-7">
+
+                <a href="#dashboard"
+                   class="font-medium text-indigo-600">
+                    Dashboard
+                </a>
+
+                <a href="#assignments"
+                   class="font-medium hover:text-indigo-600">
+                    Assignments
+                </a>
+
+                <a href="#subjects"
+                   class="font-medium hover:text-indigo-600">
+                    Subjects
+                </a>
+
+                <a href="#about"
+                   class="font-medium hover:text-indigo-600">
+                    About
+                </a>
+
+            </div>
+
+
+            <!-- Profile -->
+
+            <div class="hidden sm:flex items-center gap-3">
+
+                <div class="text-right">
+
+                    <p class="text-sm font-semibold">
+                        Samiksha
+                    </p>
+
+                    <p class="text-xs text-slate-500">
+                        Engineering Student
+                    </p>
+
+                </div>
+
+                <div class="w-10 h-10 bg-indigo-100
+                            rounded-full flex items-center
+                            justify-center">
+                    👩‍🎓
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
+
+<section id="dashboard"
+         class="bg-gradient-to-br from-indigo-600
+                via-indigo-700 to-purple-700 text-white">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-14">
+
+        <div class="grid md:grid-cols-2 gap-10 items-center">
+
+            <div>
+
+                <p class="text-indigo-200 font-medium mb-2">
+                    Welcome back 👋
+                </p>
+
+                <h2 class="text-4xl md:text-5xl font-extrabold
+                           leading-tight">
+
+                    Stay Organized.
+                    <br>
+
+                    <span class="text-indigo-200">
+                        Stay Ahead.
+                    </span>
+
+                </h2>
+
+                <p class="text-indigo-100 mt-5 max-w-lg leading-7">
+
+                    Keep track of your college assignments,
+                    deadlines and submission status in one
+                    simple dashboard.
+
+                </p>
+
+                <a href="#assignments"
+                   class="inline-block mt-7 bg-white
+                          text-indigo-700 px-6 py-3 rounded-xl
+                          font-bold hover:bg-indigo-50">
+
+                    View Assignments →
+
+                </a>
+
+            </div>
+
+
+            <!-- Progress -->
+
+            <div class="hidden md:block">
+
+                <div class="bg-white/10 backdrop-blur-lg
+                            border border-white/20
+                            rounded-3xl p-8">
+
+                    <div class="flex justify-between items-center">
+
+                        <div>
+
+                            <p class="text-indigo-200 text-sm">
+                                Assignment Progress
+                            </p>
+
+                            <h3 id="progressText"
+                                class="text-4xl font-bold mt-2">
+                                0%
+                            </h3>
+
+                        </div>
+
+                        <div class="text-5xl">
+                            📚
+                        </div>
+
+                    </div>
+
+
+                    <div class="w-full bg-white/20
+                                rounded-full h-3 mt-6">
+
+                        <div id="progressBar"
+                             class="bg-white h-3 rounded-full"
+                             style="width: 0%">
+                        </div>
+
+                    </div>
+
+                    <p class="text-sm text-indigo-100 mt-4">
+                        Keep completing your assignments!
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     STATISTICS
+===================================================== -->
+
+<section class="-mt-8 relative z-10">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+
+            <!-- Total -->
+
+            <div class="bg-white rounded-2xl shadow-lg p-5">
+
+                <p class="text-sm text-slate-500">
+                    Total Assignments
+                </p>
+
+                <h3 id="totalCount"
+                    class="text-3xl font-bold mt-2">
+                    6
+                </h3>
+
+            </div>
+
+
+            <!-- Pending -->
+
+            <div class="bg-white rounded-2xl shadow-lg p-5">
+
+                <p class="text-sm text-slate-500">
+                    Pending
+                </p>
+
+                <h3 id="pendingCount"
+                    class="text-3xl font-bold text-amber-500 mt-2">
+                    4
+                </h3>
+
+            </div>
+
+
+            <!-- Completed -->
+
+            <div class="bg-white rounded-2xl shadow-lg p-5">
+
+                <p class="text-sm text-slate-500">
+                    Completed
+                </p>
+
+                <h3 id="completedCount"
+                    class="text-3xl font-bold text-green-600 mt-2">
+                    2
+                </h3>
+
+            </div>
+
+
+            <!-- Completion -->
+
+            <div class="bg-white rounded-2xl shadow-lg p-5">
+
+                <p class="text-sm text-slate-500">
+                    Completion
+                </p>
+
+                <h3 id="percentageCount"
+                    class="text-3xl font-bold text-indigo-600 mt-2">
+                    33%
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ASSIGNMENTS
+===================================================== -->
+
+<section id="assignments" class="py-20">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+
+        <!-- Heading -->
+
+        <div class="mb-10">
+
+            <p class="text-indigo-600 font-bold text-sm uppercase">
+                My Assignments
+            </p>
+
+            <h2 class="text-3xl md:text-4xl font-extrabold mt-2">
+                Assignment Overview
+            </h2>
+
+            <p class="text-slate-500 mt-2">
+                Click the button to change assignment status.
+            </p>
+
+        </div>
+
+
+        <!-- Assignment Grid -->
+
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+
+            <!-- =================================================
+                 ASSIGNMENT 1
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="pending">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-blue-100 flex items-center
+                                justify-center text-2xl">
+                        💻
+                    </div>
+
+                    <span class="status-badge bg-amber-100
+                                 text-amber-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <p class="text-indigo-600 font-semibold text-sm mt-5">
+                    Web Development
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    Tailwind CSS Website
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Create a responsive website using HTML
+                    and Tailwind CSS.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        10 October 2026
+                    </p>
+
+                </div>
+
+
+                <!-- BUTTON -->
+
+                <button
+                    class="status-btn w-full mt-5 bg-indigo-600
+                           hover:bg-indigo-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Submitted ✓
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGNMENT 2
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="completed">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-purple-100 flex items-center
+                                justify-center text-2xl">
+                        🧠
+                    </div>
+
+                    <span class="status-badge bg-green-100
+                                 text-green-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Submitted ✓
+                    </span>
+
+                </div>
+
+
+                <p class="text-purple-600 font-semibold text-sm mt-5">
+                    Data Structures
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    Binary Search Tree
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Implement insertion and traversal operations
+                    in a BST.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        8 October 2026
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="status-btn w-full mt-5 bg-green-600
+                           hover:bg-green-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Pending
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGNMENT 3
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="pending">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-orange-100 flex items-center
+                                justify-center text-2xl">
+                        🐍
+                    </div>
+
+                    <span class="status-badge bg-amber-100
+                                 text-amber-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <p class="text-orange-600 font-semibold text-sm mt-5">
+                    Python
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    Library Management
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Develop a basic library management system
+                    using Python.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        12 October 2026
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="status-btn w-full mt-5 bg-indigo-600
+                           hover:bg-indigo-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Submitted ✓
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGNMENT 4
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="pending">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-green-100 flex items-center
+                                justify-center text-2xl">
+                        ☕
+                    </div>
+
+                    <span class="status-badge bg-amber-100
+                                 text-amber-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <p class="text-green-600 font-semibold text-sm mt-5">
+                    Java Programming
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    OOP Concepts
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Demonstrate inheritance, polymorphism
+                    and encapsulation.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        14 October 2026
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="status-btn w-full mt-5 bg-indigo-600
+                           hover:bg-indigo-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Submitted ✓
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGNMENT 5
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="completed">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-pink-100 flex items-center
+                                justify-center text-2xl">
+                        📊
+                    </div>
+
+                    <span class="status-badge bg-green-100
+                                 text-green-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Submitted ✓
+                    </span>
+
+                </div>
+
+
+                <p class="text-pink-600 font-semibold text-sm mt-5">
+                    Mathematics
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    Probability Analysis
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Solve probability problems and statistical
+                    questions.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        7 October 2026
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="status-btn w-full mt-5 bg-green-600
+                           hover:bg-green-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Pending
+
+                </button>
+
+            </div>
+
+
+            <!-- =================================================
+                 ASSIGNMENT 6
+            ================================================= -->
+
+            <div class="assignment-card bg-white rounded-3xl
+                        border border-slate-200 p-6 shadow-sm
+                        hover:shadow-xl transition"
+                 data-status="pending">
+
+                <div class="flex justify-between">
+
+                    <div class="w-12 h-12 rounded-2xl
+                                bg-cyan-100 flex items-center
+                                justify-center text-2xl">
+                        🌐
+                    </div>
+
+                    <span class="status-badge bg-amber-100
+                                 text-amber-700 px-3 py-1
+                                 rounded-full text-xs font-bold">
+                        Pending
+                    </span>
+
+                </div>
+
+
+                <p class="text-cyan-600 font-semibold text-sm mt-5">
+                    Computer Networks
+                </p>
+
+                <h3 class="text-xl font-bold mt-1">
+                    Network Topologies
+                </h3>
+
+                <p class="text-slate-500 text-sm mt-3 leading-6">
+
+                    Study and explain different network
+                    topologies with diagrams.
+
+                </p>
+
+
+                <div class="border-t mt-5 pt-4">
+
+                    <p class="text-xs text-slate-400">
+                        Due Date
+                    </p>
+
+                    <p class="font-semibold text-sm">
+                        18 October 2026
+                    </p>
+
+                </div>
+
+
+                <button
+                    class="status-btn w-full mt-5 bg-indigo-600
+                           hover:bg-indigo-700 text-white
+                           py-3 rounded-xl font-semibold transition">
+
+                    Mark as Submitted ✓
+
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     SUBJECTS
+===================================================== -->
+
+<section id="subjects" class="py-20 bg-slate-100">
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+        <div class="text-center mb-10">
+
+            <p class="text-indigo-600 font-bold text-sm uppercase">
+                Subjects
+            </p>
+
+            <h2 class="text-3xl font-extrabold mt-2">
+                Your Subjects
+            </h2>
+
+        </div>
+
+
+        <div class="grid grid-cols-2 md:grid-cols-3
+                    lg:grid-cols-6 gap-4">
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">💻</div>
+
+                <h3 class="font-bold text-sm">
+                    Web Development
+                </h3>
+
+            </div>
+
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">🧠</div>
+
+                <h3 class="font-bold text-sm">
+                    Data Structures
+                </h3>
+
+            </div>
+
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">🐍</div>
+
+                <h3 class="font-bold text-sm">
+                    Python
+                </h3>
+
+            </div>
+
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">☕</div>
+
+                <h3 class="font-bold text-sm">
+                    Java
+                </h3>
+
+            </div>
+
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">📊</div>
+
+                <h3 class="font-bold text-sm">
+                    Mathematics
+                </h3>
+
+            </div>
+
+
+            <div class="bg-white rounded-2xl p-5 text-center
+                        hover:shadow-lg transition">
+
+                <div class="text-3xl mb-3">🌐</div>
+
+                <h3 class="font-bold text-sm">
+                    Networks
+                </h3>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     ABOUT
+===================================================== -->
+
+<section id="about" class="py-20">
+
+    <div class="max-w-4xl mx-auto px-4 text-center">
+
+        <div class="bg-indigo-50 rounded-3xl p-8 md:p-12">
+
+            <div class="text-5xl mb-5">
+                🎓
+            </div>
+
+            <h2 class="text-3xl font-extrabold">
+                About Assignment Tracker
+            </h2>
+
+            <p class="text-slate-600 max-w-2xl mx-auto mt-4
+                      leading-7">
+
+                College Assignment Tracker is a simple web
+                application designed to help students organize
+                their assignments, deadlines and submission
+                status.
+
+            </p>
+
+            <div class="flex justify-center flex-wrap gap-3 mt-7">
+
+                <span class="bg-white px-4 py-2 rounded-full
+                             text-sm font-semibold">
+                    HTML5
+                </span>
+
+                <span class="bg-white px-4 py-2 rounded-full
+                             text-sm font-semibold">
+                    Tailwind CSS
+                </span>
+
+                <span class="bg-white px-4 py-2 rounded-full
+                             text-sm font-semibold">
+                    JavaScript
+                </span>
+
+                <span class="bg-white px-4 py-2 rounded-full
+                             text-sm font-semibold">
+                    Responsive Design
+                </span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
+
+<footer class="bg-slate-950 text-white py-8">
+
+    <div class="max-w-7xl mx-auto px-4 text-center">
+
+        <div class="text-2xl mb-3">
+            🎓
+        </div>
+
+        <h3 class="font-bold text-lg">
+            College Assignment Tracker
+        </h3>
+
+        <p class="text-slate-400 text-sm mt-2">
+            Organize • Track • Complete
+        </p>
+
+        <div class="border-t border-slate-800 mt-6 pt-5
+                    text-xs text-slate-500">
+
+            © 2026 College Assignment Tracker
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+    // Select all assignment cards
+    const cards =
+        document.querySelectorAll(".assignment-card");
+
+
+    // Select all status buttons
+    const buttons =
+        document.querySelectorAll(".status-btn");
+
+
+    // Add click event to every button
+    buttons.forEach(function(button, index) {
+
+        button.addEventListener("click", function() {
+
+            // Get the corresponding card
+            const card = cards[index];
+
+            // Get the status badge
+            const badge =
+                card.querySelector(".status-badge");
+
+
+            // Check current status
+            if (card.dataset.status === "pending") {
+
+                // Change to completed
+                card.dataset.status = "completed";
+
+                // Change badge
+                badge.textContent = "Submitted ✓";
+
+                badge.className =
+                    "status-badge bg-green-100 text-green-700 " +
+                    "px-3 py-1 rounded-full text-xs font-bold";
+
+
+                // Change button
+                button.textContent = "Mark as Pending";
+
+                button.className =
+                    "status-btn w-full mt-5 bg-green-600 " +
+                    "hover:bg-green-700 text-white py-3 " +
+                    "rounded-xl font-semibold transition";
+
+
+            } else {
+
+                // Change to pending
+                card.dataset.status = "pending";
+
+                // Change badge
+                badge.textContent = "Pending";
+
+                badge.className =
+                    "status-badge bg-amber-100 text-amber-700 " +
+                    "px-3 py-1 rounded-full text-xs font-bold";
+
+
+                // Change button
+                button.textContent = "Mark as Submitted ✓";
+
+                button.className =
+                    "status-btn w-full mt-5 bg-indigo-600 " +
+                    "hover:bg-indigo-700 text-white py-3 " +
+                    "rounded-xl font-semibold transition";
+
+            }
+
+
+            // Update statistics
+            updateStatistics();
+
+        });
+
+    });
+
+
+    // Function to update statistics
+    function updateStatistics() {
+
+        let completed = 0;
+        let pending = 0;
+
+
+        cards.forEach(function(card) {
+
+            if (card.dataset.status === "completed") {
+
+                completed++;
+
+            } else {
+
+                pending++;
+
+            }
+
+        });
+
+
+        const total = cards.length;
+
+
+        // Calculate percentage
+        const percentage =
+            Math.round((completed / total) * 100);
+
+
+        // Update numbers
+        document.getElementById("totalCount")
+            .textContent = total;
+
+        document.getElementById("pendingCount")
+            .textContent = pending;
+
+        document.getElementById("completedCount")
+            .textContent = completed;
+
+        document.getElementById("percentageCount")
+            .textContent = percentage + "%";
+
+
+        // Update progress text
+        document.getElementById("progressText")
+            .textContent = percentage + "%";
+
+
+        // Update progress bar
+        document.getElementById("progressBar")
+            .style.width = percentage + "%";
+
+    }
+
+
+    // Run once when page loads
+    updateStatistics();
+
+</script>
+
+</body>
+</html>
+
